@@ -60,4 +60,9 @@ button:hover {
   background-color: #F1B2B2;
 }
 
+/* Step-2で追加されるスタイル */
+nav a:not(:first-child) {
+  padding-left: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */
