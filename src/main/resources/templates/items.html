@@ -11,6 +11,13 @@
 	<hr />
 	<!-- メインコンテンツ領域 -->
 	<main>
+		<nav>
+			<a href="/items">全商品</a>
+			<a th:each="category:${categoryList}"
+			   th:href="'/items?categoryId=' + ${category.id}"
+			   th:text="${category.name}"></a>
+			<a href="/items">カートを見る</a>
+		</nav>
 		<article>
 			<table border="1">
 				<tr>

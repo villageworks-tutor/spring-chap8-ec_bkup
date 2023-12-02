@@ -61,3 +61,11 @@ button {
 	}
 }
 
+/* Step-2で追加されるスタイル */
+nav {
+	a {
+		&:not(:first-child) {
+			padding-left: 10px;
+		}
+	}
+}
