@@ -16,7 +16,7 @@
 			<a th:each="category:${categoryList}"
 			   th:href="'/items?categoryId=' + ${category.id}"
 			   th:text="${category.name}"></a>
-			<a href="/items">カートを見る</a>
+			<a href="/cart">カートを見る</a>
 		</nav>
 		<article>
 			<table border="1">

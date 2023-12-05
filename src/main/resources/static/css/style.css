@@ -45,6 +45,10 @@ table th {
 table td {
   background-color: white;
 }
+table td[colspan="5"] {
+  /* 総合計欄 */
+  text-align: right;
+}
 
 /* 送信ボタン */
 button {

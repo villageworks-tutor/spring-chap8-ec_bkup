@@ -20,16 +20,52 @@ public class Item {
 	protected Integer price;
 	@Transient
 	protected Integer quantity;
+
 	
+	/**
+	 * デフォルトコンストラクタ
+	 */
+	public Item() {}
+
+	/**
+	 * コンストラクタ
+	 * @param categoryId
+	 * @param name
+	 * @param price
+	 * @param quantity
+	 */
+	public Item(Integer categoryId, String name, Integer price, Integer quantity) {
+		this.categoryId = categoryId;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+	}
+	
+	/**
+	 * コンストラクタ
+	 * @param id
+	 * @param categoryId
+	 * @param name
+	 * @param price
+	 * @param quantity
+	 */
+	public Item(Integer id, Integer categoryId, String name, Integer price, Integer quantity) {
+		this(categoryId, name, price, quantity);
+		this.id = id;
+	}
+
 	public Integer getId() {
 		return id;
 	}
+	
 	public Integer getCategoryId() {
 		return categoryId;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public Integer getPrice() {
 		return price;
 	}
@@ -37,6 +73,7 @@ public class Item {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+	
 	public Integer getQuantity() {
 		return this.quantity;
 	}
