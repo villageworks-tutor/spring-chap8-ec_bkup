@@ -35,8 +35,17 @@ public class CartController {
 		item.setQuantity(quantity);
 		// セッションスコープに登録されているカートに取得した商品を投入
 		cart.add(item);
-		// 画面遷移
-		return "cart";
+		// 画面遷移：リダイレクト
+		return "redirect:/cart";
+	}
+	
+	// カートの商品を削除
+	@PostMapping("/cart/delete")
+	public String deleteCart(@RequestParam("itemId") Integer itemId) {
+		// リクエストパラメータをもとにして商品リストを削除
+		cart.delete(itemId);
+		// 画面遷移：リダイレクト
+		return "redirect:/cart";
 	}
 	
 }

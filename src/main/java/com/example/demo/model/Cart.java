@@ -64,5 +64,19 @@ public class Cart {
 		}
 		return total;
 	}
+
+	/**
+	 * カートに入っている商品を削除する
+	 * @param itemId 削除対象となる商品の商品番号
+	 */
+	public void delete(Integer itemId) {
+		for (Item item : this.getItems()) {
+			if (item.getId() == itemId) {
+				// 削除対象の商品が見つかった場合：その商品を削除
+				this.getItems().remove(item);
+				break;
+			}
+		}
+	}
 	
 }
