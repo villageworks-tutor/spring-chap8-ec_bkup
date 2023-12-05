@@ -6,17 +6,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "items")
 public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	protected Integer id;
 	@Column(name = "category_id")
-	private Integer categoryId;
-	private String name;
-	private Integer price;
+	protected Integer categoryId;
+	protected String name;
+	protected Integer price;
+	@Transient
+	protected Integer quantity;
 	
 	public Integer getId() {
 		return id;
@@ -29,6 +32,13 @@ public class Item {
 	}
 	public Integer getPrice() {
 		return price;
+	}
+	
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	public Integer getQuantity() {
+		return this.quantity;
 	}
 	
 }
