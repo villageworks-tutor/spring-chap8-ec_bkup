@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,13 +10,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.Order;
+import com.example.demo.model.Cart;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.OrderRepository;
 
 @Controller
 public class OrderController {
 	
 	@Autowired
 	CustomerRepository customerRepository;
+	@Autowired
+	OrderRepository orderRepository;
+	
+	@Autowired
+	Cart cart;
 	
 	// 顧客情報入力画面表示
 	@GetMapping("/order")
@@ -52,6 +62,14 @@ public class OrderController {
 		// 顧客インスタンスを永続化
 		customerRepository.save(customer);
 
+		// 注文クラスをインスタンス化
+		Date today = new Date(System.currentTimeMillis());
+		Order order = new Order(customer.getId(), today, cart.getTotalPrice());
+		// 注文インスタンスを永続化
+		orderRepository.save(order);
+		
+		// 注文番号をスコープに登録
+		model.addAttribute("orderNo", order.getId());
 		
 		// 画面遷移
 		return "ordered";
