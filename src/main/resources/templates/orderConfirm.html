@@ -36,7 +36,7 @@
 						<td th:text="${customer.email}"></td>
 					</tr>
 				</table>
-				<form action="" method="">
+				<form action="/order" method="post">
 					<input type="hidden" name="name" th:value="${customer.name}" />
 					<input type="hidden" name="address" th:value="${customer.address}" />
 					<input type="hidden" name="tel" th:value="${customer.tel}" />
