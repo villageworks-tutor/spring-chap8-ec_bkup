@@ -78,5 +78,12 @@ public class Cart {
 			}
 		}
 	}
+
+	/**
+	 * カートに入っている商品をすべて削除する
+	 */
+	public void clear() {
+		this.items.clear();
+	}
 	
 }
