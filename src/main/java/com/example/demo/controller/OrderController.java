@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.Item;
 import com.example.demo.entity.Order;
+import com.example.demo.entity.OrderDetail;
 import com.example.demo.model.Cart;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.OrderDetailRepository;
 import com.example.demo.repository.OrderRepository;
 
 @Controller
@@ -22,6 +27,8 @@ public class OrderController {
 	CustomerRepository customerRepository;
 	@Autowired
 	OrderRepository orderRepository;
+	@Autowired
+	OrderDetailRepository orderDetailRepository;
 	
 	@Autowired
 	Cart cart;
@@ -67,6 +74,17 @@ public class OrderController {
 		Order order = new Order(customer.getId(), today, cart.getTotalPrice());
 		// 注文インスタンスを永続化
 		orderRepository.save(order);
+		
+		// セッションスコープに登録されているカート情報をもとに注文詳細リストを生成
+		List<OrderDetail> details = new ArrayList<>();
+		for (Item item : cart.getItems()) {
+			details.add(new OrderDetail(order.getId(), item.getId(), item.getQuantity()));
+		}
+		// 注文詳細リストを永続化
+		orderDetailRepository.saveAll(details);
+		
+		// カートの商品をクリア
+		cart.clear();
 		
 		// 注文番号をスコープに登録
 		model.addAttribute("orderNo", order.getId());
