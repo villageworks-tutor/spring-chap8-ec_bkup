@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>CustomerInfo</title>
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 	<!-- ヘッダー領域：ヘッダーのの読み込み -->
@@ -18,34 +18,30 @@
 			</section>
 			<section>
 				<h2>お客様情報を入力してください</h2>
-				<form action="/order/confirm" method="post">
 				<table border="1">
 					<tr>
 						<th>お名前</th>
-						<td>
-							<input type="text" name="name" />
-						</td>
+						<td th:text="${customer.name}"></td>
 					</tr>
 					<tr>
 						<th>住所</th>
-						<td>
-							<input type="text" name="address" />
-						</td>
+						<td th:text="${customer.address}"></td>
 					</tr>
 					<tr>
 						<th>電話番号</th>
-						<td>
-							<input type="text" name="tel" />
-						</td>
+						<td th:text="${customer.tel}"></td>
 					</tr>
 					<tr>
 						<th>e-mail</th>
-						<td>
-							<input type="text" name="email" />
-						</td>
+						<td th:text="${customer.email}"></td>
 					</tr>
 				</table>
-				<button>確認画面へ</button>
+				<form action="" method="">
+					<input type="hidden" name="name" th:value="${customer.name}" />
+					<input type="hidden" name="address" th:value="${customer.address}" />
+					<input type="hidden" name="tel" th:value="${customer.tel}" />
+					<input type="hidden" name="email" th:value="${customer.email}" />
+					<button>この内容で注文</button>
 				</form>
 			</section>
 		</article>
