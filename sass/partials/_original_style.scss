@@ -44,6 +44,10 @@ table {
 	}
 	td {
 		background-color: white;
+		&[colspan="5"] {
+			/* 総合計欄 */
+			text-align: right;
+		}
 	}
 }
 
